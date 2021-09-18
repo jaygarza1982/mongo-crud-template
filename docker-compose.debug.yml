@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+
+    api-project:
+        command: nodemon --inspect=0.0.0.0 --legacy-watch ./bin/www
+        ports:
+            - 9229:9229

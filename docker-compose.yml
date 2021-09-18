@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+
+    api-project:
+        container_name: "api-project"
+        build:
+            context: ./server
+        volumes:
+            - ./server:/app
+            - /app/node_modules
+        ports:
+            - 4017:3000
+        env_file: env.conf
+        depends_on: 
+            - "mongo-project"
+
+    mongo-project:
+        container_name: "mongo-project"
+        image: mongo:4.0.23-xenial
+        hostname: mongo-project
+        ports:
+            - 47019:27017
+        volumes:
+            - ./mongo/db:/data/db
+            - ./mongo/backups:/backups
+        env_file: env.conf
